@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 3.10.0)
-project(MyProject VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 4.0)
 
-add_executable(MyProject main.cpp)
+PROJECT(cpp-training VERSION 0.1.0)
 
+SET(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations -Wall -Werror -Wnon-virtual-dtor -Woverloaded-virtual")
+
+ENABLE_TESTING()
+ADD_SUBDIRECTORY(src)
+ADD_SUBDIRECTORY(tests)
