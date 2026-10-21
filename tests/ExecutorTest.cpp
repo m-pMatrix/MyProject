@@ -166,4 +166,15 @@ TEST(ExecutorTest, should_return_heading_W_given_command_is_R_and_facing_is_S)
     ASSERT_EQ(target, executor->Query());
 }
 
+TEST(ExecutorTest, should_return_default_pose_given_multiple_commands_are_MRMLMLMLMM_and_with_init_pose)
+{
+    // given
+    std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'S'}));
+    // when
+    executor->Execute("MRMLMLMLMM");
+    // then
+    const Pose target({0, 0, 'N'});
+    ASSERT_EQ(target, executor->Query());
+}
+
 }  // namespace adas
