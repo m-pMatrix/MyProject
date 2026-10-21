@@ -13,16 +13,25 @@ bool operator==(const Pose& lhs, const Pose& rhs)
     return std::tie(lhs.x, lhs.y, lhs.heading) == std::tie(rhs.x, rhs.y, rhs.heading);
 }
 
-//       测试套
 TEST(ExecutorTest, should_return_init_pose_when_without_command)
 {
     // given
     std::unique_ptr<Executor> executor(Executor::NewExecutor({0, 0, 'E'}));
+    // when		测试遵循了 Arrange-Act-Assert (AAA) 模式，这是提高可读性和维护性的好习惯
+    // then
+    const Pose target({0, 0, 'E'});
+    ASSERT_EQ(target, executor->Query());
+}
+
+//       测试套
+TEST(ExecutorTest, should_return_default_pose_when_without_init_and_command)
+{
+    // given
+    std::unique_ptr<Executor> executor(Executor::NewExecutor());
     // when
 
     // then
-    const Pose target({0, 0, 'E'});
-
+    const Pose target({0, 0, 'N'});
     ASSERT_EQ(target, executor->Query());
 }
 
